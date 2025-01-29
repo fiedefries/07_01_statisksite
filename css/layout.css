@@ -3,15 +3,63 @@
   padding: 0;
   box-sizing: border-box;
 }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 main {
   max-width: 80%;
   margin: 0 auto;
 }
+
+body {
+  background-color: rgb(244, 244, 244);
+}
+h2 {
+  display: grid;
+  grid-column: 1/-1;
+}
+h3 {
+  margin-top: 10px;
+}
+.grey {
+  opacity: 40%;
+}
+p {
+  line-height: 2rem;
+}
+.box a {
+  display: flex;
+  color: white;
+  border: 1px solid black;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.box a:hover {
+  font-weight: 800;
+}
+.imgcontainer {
+  position: relative;
+  display: inline-block;
+  opacity: 30%;
+}
+.soldout {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+}
+
 /*menu*/
 
 header {
+  padding-top: 30px;
   display: flex;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .menu {
@@ -19,8 +67,19 @@ header {
   list-style: none;
 }
 
-.logo {
+.logo a {
+  font-family: Arial, Helvetica, sans-serif;
   margin-inline-end: auto;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: 800;
+  list-style: none;
+  color: black;
+}
+.bogstav {
+  display: inline-block;
+  color: red;
+  transform: scaleX(-1) translateX(-0.2rem);
 }
 /*forside*/
 h1 {
@@ -46,8 +105,49 @@ h1 {
   font-weight: 800;
 }
 
+.produktliste {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(5, auto); /* Sørger for, at rækkerne har automatisk højde */
+  gap: 20px;
+}
+.produktliste img {
+  max-width: 100%;
+  padding-top: 3rem;
+}
+
+.box {
+  display: grid;
+  grid-row: span 5; /* Sørger for, at hver .box fylder 5 rækker */
+}
+
+.produktside {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
 @media (min-width: 800px) {
   .category_list_container {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .produktliste {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, auto); /* Sørger for, at rækkerne har automatisk højde */
+  }
+  .soldout {
+    position: absolute;
+    top: 12%;
+    right: 2%;
+  }
+  .produktside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .produktside img {
+    max-height: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
