@@ -1,6 +1,11 @@
+const mycategori = new URLSearchParams(window.location.search).get("category");
+console.log("siden vises", mycategori);
 const produktListe = document.querySelector(".produktliste");
+const ovserskrift = document.querySelector("h2");
 
-fetch(`https://kea-alt-del.dk/t7/api/products/`)
+ovserskrift.innerHTML = mycategori;
+
+fetch(`https://kea-alt-del.dk/t7/api/products?category=${mycategori}`)
   .then((response) => response.json())
   .then((data) => showList(data));
 
