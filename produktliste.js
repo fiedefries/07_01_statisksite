@@ -41,16 +41,17 @@ function showList(data) {
           <span class="soldOutLabel ${product.soldout && "soldOut_img"}">Sold out</span>
     </div>
   </a>
-
+  <h2 class="product-title">${product.productdisplayname}</h2>
   <p class="brand">${product.brandname}</p>
-  <h2>${product.productdisplayname}</h2>
+
  <p>
   ${product.discount ? `<span class="dashed">${product.price},00 DKK</span> <span class="new-price">${(product.price * (1 - product.discount / 100)).toFixed(2)},00 DKK</span>` : `${product.price},00 DKK`}
 </p>
 
-  <a href="produkt.html?id=${product.id}" class="add_to_bag">
-    <p>ADD TO BAG</p>
+<a href="produkt.html?id=${product.id}" class="add_to_bag">
+    <p>+</p>
   </a>
+
 </section>
       `
     )

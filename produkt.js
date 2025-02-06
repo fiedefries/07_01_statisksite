@@ -13,9 +13,9 @@ fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
           </div>
         <div class="produkttekst">
        <h2 class="product-title">${data.productdisplayname}</h2>
-          <h3 class="category">${data.category}</h3>
+        
           
-          <h4 class="brand"> ${data.brandname},-</h4>
+          <h4 class="brand"> ${data.brandname}</h4>
           <h4 class="produktPrice">
   <span>Pris:</span> 
   ${data.discount ? `<span class="dashed">${data.price},-</span> <span class="new-price">${(data.price * (1 - data.discount / 100)).toFixed(2)},-</span>` : `${data.price},-`}
@@ -31,7 +31,7 @@ fetch(`https://kea-alt-del.dk/t7/api/products/${productId}`)
       </select>
       </div>
 
-       <button class="add-to-bag" ${data.soldout ? "disabled" : ""}>Læg i kurv</button>
+       <button class="add-to-bag" ${data.soldout ? "disabled" : ""}>ADD TO BAG</button>
           </div>
             
        
