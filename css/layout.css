@@ -15,82 +15,9 @@ main {
 }
 
 body {
-  background-color: rgb(244, 244, 244);
+  background-color: white;
 }
-h2 {
-  display: grid;
-  grid-column: 1/-1;
-  font-family: "Montserrat", serif;
-  font-weight: normal;
-  font-style: normal;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-h3 {
-  margin-top: 10px;
-  font-family: "Montserrat", serif;
-  font-weight: normal;
-  font-style: normal;
-  text-transform: uppercase;
-  font-size: 15px;
-}
-.grey {
-  opacity: 40%;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-p {
-  line-height: 2rem;
-  font-size: 15px;
-  font-family: "Montserrat", serif;
-  font-weight: normal;
-  font-style: normal;
-}
-.box a {
-  display: flex;
-  color: white;
-  border: 1px solid black;
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  font-family: "Montserrat", serif;
-  font-weight: normal;
-  font-style: normal;
-}
-.produkttekst a {
-  display: flex;
-  color: white;
-  border: 1px solid black;
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  font-family: "Montserrat", serif;
-  font-weight: normal;
-  font-style: normal;
-}
-.box a:hover {
-  font-weight: 800;
-}
-.imgcontainer {
-  position: relative;
-  display: inline-block;
-}
-.imgcontainer img {
-  opacity: 30%;
-}
-.soldout {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  z-index: 100;
-  color: white;
-  border: 1px solid black;
-  background-color: black;
-}
-
-/*menu*/
+/*----------------------------------menu---------------------------------*/
 
 header {
   padding-top: 30px;
@@ -98,11 +25,6 @@ header {
   max-width: 80%;
   margin: 0 auto;
   padding-bottom: 50px;
-}
-
-.menu {
-  display: flex;
-  list-style: none;
 }
 
 .logo a {
@@ -114,18 +36,55 @@ header {
   list-style: none;
   color: black;
 }
+/*R i logoet*/
 .bogstav {
   display: inline-block;
   color: red;
-  transform: scaleX(-1) translateX(-0.2rem);
+  transform: scaleX(-1) translateX(-0.2rem); /*får det til at stå omvendt*/
+  margin-right: 5px;
 }
-/*forside*/
+/*filter menu*/
+#filter {
+  margin-bottom: 40px;
+}
+
+/*---------------------------Generel styling------------------------------*/
 h1 {
   margin-top: 100px;
   font-family: "Montserrat", serif;
   font-weight: normal;
   font-style: normal;
 }
+
+h2 {
+  display: grid;
+  grid-column: 1/-1;
+  font-family: "Montserrat", serif;
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+h3 {
+  margin-top: 10px;
+  font-family: "Montserrat", serif;
+  font-weight: 200;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+p {
+  line-height: 2rem;
+  font-size: 15px;
+  font-family: "Montserrat", serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*-----------------------------forside--------------------------------*/
+
+/*indeholder alle kategorierne på forsiden*/
 .category_list_container {
   display: grid;
   text-align: center;
@@ -134,19 +93,238 @@ h1 {
   margin-top: 20px;
 }
 .category_list_container a {
-  display: grid;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  font-family: "Montserrat", serif;
+  font-size: 1rem;
   text-decoration: none;
   list-style: none;
   color: black;
-  padding: 10px;
+  padding: 80px;
   border: 1px solid black;
   text-transform: uppercase;
+  border-radius: 10px;
 }
 .category_list_container a:hover {
   font-weight: 800;
 }
 
+/*----------------------Billede container -------------------------*/
+
+/*produktbilledet og indeholder også labels som udsolgt og discount*/
+.image_container {
+  position: relative;
+  display: inline-block;
+}
+
+/*-------------------------------- SALE --------------------------------*/
+/*--- Klassen vises hvis produktet er på tilbud - bruges til at vise rabatsatsen---*/
+.saleLabel {
+  font-family: "Montserrat", serif;
+  font-size: 14px;
+  font-weight: bold;
+  visibility: hidden;
+  text-transform: uppercase;
+}
+
+/* en ekstra klasse der bruges til at style .saleLabel på produktliste siden*/
+.saleOn_img {
+  position: absolute;
+  visibility: visible;
+  top: 10px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+/*bruges sammen med .saleLabel for at style produkter, der på tilbud på produkt siden*/
+.saleOn_product {
+  position: absolute;
+  visibility: visible;
+  top: 10px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/*-----------------------------SOLD OUT--------------------------------*/
+/*tilføjer gennemsigtighed når det er udsolgt*/
+.soldOut {
+  opacity: 0.5;
+}
+
+/*Vises hvis produkterne er udsolgt*/
+.soldOutLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  font-size: 10px;
+  font-family: "Montserrat", serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  visibility: hidden;
+}
+
+/* en ekstra klasse der bruges til at style .soldOutLabel på produktliste siden*/
+.soldOut_img {
+  position: absolute;
+  visibility: visible;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+/*bruges sammen med .saoldOutLabel for at style produkter, der på tilbud på produkt siden*/
+.soldOut_product {
+  position: absolute;
+  visibility: visible;
+  background: black;
+  color: aliceblue;
+  padding: 10px 15px;
+  font-size: 18px;
+  z-index: 100;
+}
+
+/*Bruges som en knap som tilføjer produkter til kurven på produktlistesiden*/
+.add_to_bag {
+  display: flex;
+  color: black;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", serif;
+  font-weight: normal;
+  font-style: normal;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/*-----------------------------produkt info---------------------------------*/
+/*hele produkt infomationen*/
+.produkttekst {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+}
+.produktContainer .product-title {
+  font-size: 2rem;
+  border-bottom: 1px solid #000;
+}
+.produktContainer .brand {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+.produktContainer .category {
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+.produkttekst h2,
+.produkttekst h3,
+.produkttekst h4 {
+  margin: 0;
+}
+
+/*Viser produktets navn*/
+.product-title {
+  font-family: "Montserrat", serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+/*styler kategorien*/
+.category {
+  font-size: 16px;
+  font-weight: normal;
+}
+/*Produktets brandnavn*/
+.brand {
+  font-family: "Montserrat", serif;
+  font-size: 18px;
+  font-weight: 200;
+  color: #333;
+  text-transform: uppercase;
+}
+/*Tilføjer streg over tidligere pris*/
+.dashed {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 8px;
+}
+/*viser den nye pris*/
+.new-price {
+  font-weight: bold;
+  color: red;
+  font-family: "Montserrat", serif;
+}
+.produktPrice {
+  font-family: "Montserrat", serif;
+}
+
+/*-------------------------størrelses knsp - drop-down menu--------------------*/
+.size-container {
+  margin-top: 20px;
+}
+/*det er en drop-down menu som bruges når man vælger størrelse*/
+select {
+  padding: 5px;
+  font-family: "Montserrat", serif;
+  font-size: 16px;
+  border: 1px solid black;
+  background: white;
+  color: black;
+  cursor: pointer;
+  padding: 20px;
+}
+.produktContainer select {
+  padding: 1px 50px;
+  background-color: white;
+  color: #000;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+/*Giver beskrivelse af select*/
+label {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+/*add to bag på produkt siden*/
+.add-to-bag {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: white;
+  color: #000;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 40px;
+}
+.produktContainer .image_container {
+  margin-bottom: 40px;
+}
+/*gør at knappen bliver grå og ikke virker når den er udsolgt*/
+.add-to-bag:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+/*layout til produktliste*/
 .produktliste {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -157,34 +335,38 @@ h1 {
   max-width: 100%;
   padding-top: 1rem;
 }
-
+/*Gruppere billede, tekst og pris for hvert produkt*/
 .box {
   display: grid;
   grid-row: span 5; /* Sørger for, at hver .box fylder 5 rækker */
+  margin-bottom: 40px;
 }
 
 .produktside {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  align-items: start;
+  width: 100%;
+  max-width: 900px;
 }
 
 @media (min-width: 800px) {
+  /*indeholder hele produktets information*/
+  .produktContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+    width: 100%;
+    max-width: 900px;
+  }
   .category_list_container {
     grid-template-columns: repeat(3, 1fr);
   }
   .produktliste {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, auto); /* Sørger for, at rækkerne har automatisk højde */
-  }
-  .soldout {
-    position: absolute;
-    top: 12%;
-    right: 2%;
-  }
-  .produktside {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
   .produktside img {

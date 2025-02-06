@@ -1,27 +1,67 @@
 const produktListe = document.querySelector(".produktliste");
 
-fetch(`https://kea-alt-del.dk/t7/api/products/`)
+const getString = window.location.search;
+const getSearch = new URLSearchParams(getString);
+const category = getSearch.get("category");
+
+let gemData;
+const filterSelecter = document.querySelector("#filter");
+let filter = "all";
+
+fetch(`https://kea-alt-del.dk/t7/api/products?category=${category}&limit=50`)
   .then((response) => response.json())
-  .then((data) => showList(data));
+  .then((dataJSON) => {
+    gemData = dataJSON;
+    showList(gemData);
+  });
 
-function showList(products) {
-  console.log(products);
-  let markup = "";
+function showList(data) {
+  const filteredData = data.filter((product) => {
+    if (filter === "all") {
+      return true;
+    } else if (filter === "saleLabel") {
+      return product.discount;
+    } else if (filter == "soldOutLabel") {
+      return !product.soldout;
+    }
+  });
+  const markup = filteredData
 
-  products
-    .map((product) => {
-      markup += `
-       
-        <div class="box">
-          <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="dame med badedragt" />
-          <h3>${product.productdisplayname}</h3>
-          <p class="grey">Swimwear</p>
-          <p>${product.price}</p>
-          <a href="produkt.html">Add to bag</a>
-        </div>
-      `;
-    })
+    .map(
+      (product) => `
+      <section class="box ${product.discount ? "OnSale" : ""}">
+  <a href="produkt.html?id=${product.id}">
+    <div class="image_container">
+      <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" 
+           alt="${product.productdisplayname}" 
+           style="${product.soldout ? "opacity: 0.4;" : ""}"/>
+
+      <!-- UDSOLGT Label -->
+       <span class="saleLabel ${product.discount && "saleOn_img"}">sale : ${product.discount} % </span>
+          <span class="soldOutLabel ${product.soldout && "soldOut_img"}">Sold out</span>
+    </div>
+  </a>
+  <h2 class="product-title">${product.productdisplayname}</h2>
+  <p class="brand">${product.brandname}</p>
+
+ <p>
+  ${product.discount ? `<span class="dashed">${product.price},00 DKK</span> <span class="new-price">${(product.price * (1 - product.discount / 100)).toFixed(2)},00 DKK</span>` : `${product.price},00 DKK`}
+</p>
+
+<a href="produkt.html?id=${product.id}" class="add_to_bag">
+    <p>+</p>
+  </a>
+
+</section>
+      `
+    )
     .join("");
-  console.log(markup);
+
   produktListe.innerHTML = markup;
 }
+
+filterSelecter.addEventListener("change", (event) => {
+  filter = filterSelecter.value;
+  console.log("filter", filter);
+  showList(gemData);
+});
