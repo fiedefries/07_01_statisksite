@@ -89,10 +89,15 @@ p {
   display: grid;
   text-align: center;
   gap: 15px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 .category_list_container a {
+  display: flex; /* Gør elementet fleksibelt */
+  justify-content: center; /* Centrerer vandret */
+  align-items: center; /* Centrerer lodret */
+  text-align: center; /* Sikrer, at teksten er centreret */
   background-color: white;
   font-family: "Montserrat", serif;
   font-size: 1rem;
@@ -166,7 +171,7 @@ p {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 20px;
-  font-size: 10px;
+  font-size: 5px;
   font-family: "Montserrat", serif;
   font-weight: bold;
   text-transform: uppercase;
@@ -184,8 +189,8 @@ p {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 20px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 12px;
+  font-weight: normal;
   text-transform: uppercase;
   border-radius: 5px;
 }
@@ -196,7 +201,8 @@ p {
   background: black;
   color: aliceblue;
   padding: 10px 15px;
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: normal;
   z-index: 100;
 }
 
@@ -245,7 +251,7 @@ p {
 .product-title {
   font-family: "Montserrat", serif;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0;
 }
 /*styler kategorien*/
@@ -321,7 +327,6 @@ label {
 }
 /*gør at knappen bliver grå og ikke virker når den er udsolgt*/
 .add-to-bag:disabled {
-  background-color: grey;
   cursor: not-allowed;
 }
 /*layout til produktliste*/
