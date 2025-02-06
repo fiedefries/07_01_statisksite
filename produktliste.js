@@ -1,18 +1,31 @@
 const produktListe = document.querySelector(".produktliste");
 
 const getString = window.location.search;
-
 const getSearch = new URLSearchParams(getString);
-
 const category = getSearch.get("category");
 
-fetch(`https://kea-alt-del.dk/t7/api/products?category=${category}&limit=5000`)
+let gemData;
+const filterSelecter = document.querySelector("#filter");
+let filter = "all";
+
+fetch(`https://kea-alt-del.dk/t7/api/products?category=${category}&limit=50`)
   .then((response) => response.json())
-  .then((data) => showList(data));
+  .then((dataJSON) => {
+    gemData = dataJSON;
+    showList(gemData);
+  });
 
 function showList(data) {
-  console.log("products", data);
-  const markup = data
+  const filteredData = data.filter((product) => {
+    if (filter === "all") {
+      return true;
+    } else if (filter === "saleLabel") {
+      return product.discount;
+    } else if (filter == "soldOutLabel") {
+      return !product.soldout;
+    }
+  });
+  const markup = filteredData
 
     .map(
       (product) => `
@@ -42,6 +55,12 @@ function showList(data) {
       `
     )
     .join("");
-  console.log("markup", markup);
+
   produktListe.innerHTML = markup;
 }
+
+filterSelecter.addEventListener("change", (event) => {
+  filter = filterSelecter.value;
+  console.log("filter", filter);
+  showList(gemData);
+});
